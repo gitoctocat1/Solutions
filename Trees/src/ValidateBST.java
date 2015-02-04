@@ -14,6 +14,7 @@ public class ValidateBST {
 	
 	
 	//Complexity O(n) 
+	//In-order traversal; keep track of previous node and compare values
 	 public static boolean isValidBST(TreeNode root) {
 	        
 	        if (root==null){
@@ -25,8 +26,6 @@ public class ValidateBST {
 	    }
 	    
 	    private static boolean isValid(TreeNode root, TreeNode prev){
-	    	
-	    	//System.out.println("TreeNode : "+ root.value +" Previous Node: "+ prev.value);
 	        
 	        if (root==null){
 	            return true;
