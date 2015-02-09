@@ -19,7 +19,7 @@ public class ZigZagLevelOrderTraversal {
 	}
 	
 	/**
-	 * Using Dequeue INCOMPLETE!!
+	 * Remember to alternate between inserting to the front and end of the list
 	 * @param root
 	 * @return
 	 */
@@ -27,72 +27,74 @@ public class ZigZagLevelOrderTraversal {
 
 		List<List<Integer>> result = new LinkedList<List<Integer>>();
 
-		// use a queue to keep track of nodes
-		Deque<TreeNode> queue = new LinkedList<TreeNode>();
+		//use a queue to keep track of nodes
+		List<TreeNode> queue = new LinkedList<TreeNode>();
 
-		// holds the nodes in each level
-		List<Integer> list = new ArrayList<Integer>();
+		//holds the nodes in each level
+		LinkedList<Integer> list = new LinkedList<Integer>();
 
 		int nodesInCurrentLevel = 1;
 
 		int nodesInNextLevel = 0;
-
-		boolean reverse = true;
+		
+		boolean reverse = false;
 
 		if (root == null) {
 			return result;
 		}
 
-		queue.addFirst(root);
-
-		TreeNode node = null;
+		queue.add(root);
 
 		while (!queue.isEmpty()) {
 
-			node = reverse ? queue.removeFirst() : queue.removeLast();
+			TreeNode node = queue.remove(0);
+
 			nodesInCurrentLevel--;
 
 			if (node != null) {
-				list.add(node.value);
-
-				// check for empty nodes
+			    
+			    
+             if(reverse){
+		     	list.addFirst(node.value);
+             } else {
+                  list.add(node.value);
+             }
+				
+				//check for empty nodes
 				if (node.left != null) {
-					if (reverse) {
-						queue.addLast(node.left);
-					} else {
-						queue.addFirst(node.left);
-					}
+					queue.add(node.left);
 					nodesInNextLevel++;
 				}
-
 				if (node.right != null) {
-					if (reverse) {
-						queue.addLast(node.right);
-					} else {
-						queue.addFirst(node.right);
-					}
+					queue.add(node.right);
 					nodesInNextLevel++;
 				}
 			}
 
-			// once we finished processing all nodes in current level, reset the
-			// count and clear the list
+			//once we finished processing all nodes in current level, reset the count and clear the list
 			if (nodesInCurrentLevel == 0) {
 				nodesInCurrentLevel = nodesInNextLevel;
 				nodesInNextLevel = 0;
 
-				reverse = !reverse;
-
 				result.add(list);
-				// clear the list
-				list = new ArrayList();
+				
+				reverse = !reverse;
+				//clear the list
+				list = new LinkedList();
 			}
 
 		}
 
 		return result;
-
+		
 	}
+	
+	
+	/**
+	 * Uses Collections.reverse()
+	 * @param root
+	 * @return
+	 */
 	 public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
 
 		 List<List<Integer>> result = new LinkedList<List<Integer>>();
