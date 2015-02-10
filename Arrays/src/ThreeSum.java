@@ -11,43 +11,59 @@ public class ThreeSum {
 		
 	}
 
-	
+	/**
+	 * Complexity O(n^2)
+	 * @param num
+	 * @return
+	 */
 	 public static List<List<Integer>> threeSum(int[] num) {
 	        
-	        List<List<Integer>> result = new ArrayList<List<Integer>>();
-	        
-	        List<Integer> triplet = new ArrayList<Integer>();
-	        
-	        if(num.length == 0){
-	            return result;
-	        }
-	        
-	        //sort the array
-	        Arrays.sort(num);
-	        
-	        for(int i = 0; i < num.length ; i++){
-	            
-	            int j = i+1;
-	            int k = num.length -1 ;
-	            
-	          while(j <= k){    
-	            
-	             if(num[i]+num[j]+num[k]< 0){
-	               j++;
-	                 
-	            } else if (num[i]+num[j]+num[k] > 0){
-	                k--;
-	                
-	            } else {
-	                triplet.add(0,num[i]);
-	                triplet.add(1,num[j]);
-	                triplet.add(2,num[k]);
-	                result.add(triplet);
-	                j++; k--;
-	                
-	            }
-	          }  
-	        }
-	        return result;
+		 List<List<Integer>> result = new ArrayList<List<Integer>>();
+		 
+			if (num.length < 3)
+				return result;
+		 
+			// sort array
+			Arrays.sort(num);
+		 
+			for (int i = 0; i < num.length - 2; i++) {
+				// //avoid duplicate solutions
+				if (i == 0 || num[i] > num[i - 1]) {
+		 
+					int negate = -num[i];
+		 
+					int start = i + 1;
+					int end = num.length - 1;
+		 
+					while (start < end) {
+						//case 1
+						if (num[start] + num[end] == negate) {
+							ArrayList<Integer> temp = new ArrayList<Integer>();
+							temp.add(num[i]);
+							temp.add(num[start]);
+							temp.add(num[end]);
+		 
+							result.add(temp);
+							start++;
+							end--;
+							//avoid duplicate solutions
+							while (start < end && num[end] == num[end + 1])
+								end--;
+		 
+							while (start < end && num[start] == num[start - 1])
+								start++;
+						//case 2
+						} else if (num[start] + num[end] < negate) {
+							start++;
+						//case 3
+						} else {
+							end--;
+						}
+					}
+		 
+				}
+			}
+		 
+			return result;
 	    }
 }
