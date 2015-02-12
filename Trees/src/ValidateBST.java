@@ -1,26 +1,18 @@
 
 public class ValidateBST {
 	
-	public static void main(String[] args) {
-		
-		TreeNode root = new TreeNode(2);
-		
-		root.left = new TreeNode(3);
-		//root.right =new TreeNode(3);
-		//root.right.right = new TreeNode(4);
-		
-		System.out.println(isValidBST(root));
-	}
+	 TreeNode prev = null ;
+
 	
 	
 	//Complexity O(n) 
 	//In-order traversal; keep track of previous node and compare values
-	 public static boolean isValidBST(TreeNode root) {
+	 public boolean isValidBST(TreeNode root) {
 	        
 	        if (root==null){
 	            return true;
 	        }
-	        TreeNode prev = null ;
+	       
 	        
 	        return isValid(root, prev);
 	    }
@@ -48,4 +40,12 @@ public class ValidateBST {
 	        return true;
 	    }
 
+	    
+	    
+	    //alternate approach to pass by reference
+	    //return isValid(root, new TreeWrapper());
+	    //private static boolean isValid(TreeNode root, TreeWrapper prev){
+	    class TreeWrapper {
+	    	TreeNode treenode;
+	    }
 }
