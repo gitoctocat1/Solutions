@@ -26,7 +26,8 @@ public class Deserialization {
 		if(token == '#'){
 			return ;
 		} else {
-			root = new TreeNode(token);
+			//ASCII to integer conversion
+			root = new TreeNode(token - '0');
 			deserialize(root.left, reader);
 			deserialize(root.right, reader);
 		}	
