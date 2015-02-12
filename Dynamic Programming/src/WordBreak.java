@@ -29,7 +29,7 @@ public class WordBreak {
         t[0] = true; 
  
         for(int i=0; i<s.length(); i++){
-            //should continue from match position
+            //should continue from previous matched position
             if(!t[i]) 
                 continue;
  
@@ -39,8 +39,7 @@ public class WordBreak {
                 if(end > s.length())
                     continue;
  
-                if(t[end]) continue;
- 
+                //set index of T to be true for LEETCODE ( index 0,4 matches word leet in dictionary)
                 if(s.substring(i, end).equals(a)){
                     t[end] = true;
                 }
