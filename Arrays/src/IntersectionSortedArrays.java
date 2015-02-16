@@ -9,6 +9,8 @@ public class IntersectionSortedArrays {
 	 * Complexity O( m + n) where m = length of array1 and n = length of array2
 	 * 
 	 * Start with first element of A and B; compare and if equal add to result array
+	 * 
+	 * Method 2: You could find every element in A in B using binary search i.e O(m * lg n)
 	 * @param A
 	 * @param B
 	 * @return
