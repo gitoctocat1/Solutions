@@ -46,4 +46,58 @@ public class Subsets {
 
 		return result;
 	}
+	
+	/**
+	 * Complexity O(n lg n)
+	 * @param num
+	 * @return
+	 */
+	 public List<List<Integer>> subsetsWithDup(int[] num) {
+	        
+     	List<List<Integer>> result = new ArrayList<List<Integer>>();
+
+		if (num.length == 0) {
+			return result;
+		}
+
+		// sort the array
+		Arrays.sort(num);
+
+		for (int i = 0; i < num.length; i++) {
+
+			List<List<Integer>> temp = new ArrayList<List<Integer>>();
+
+			for (List<Integer> l : result) {
+				temp.add(l);
+			}
+
+			// add num[i] to existing sets
+			for (List<Integer> l : temp) {
+				List li = new ArrayList(l);
+				
+				
+				 li.add(num[i]);
+			
+			 //check for duplicate lists
+			  if(!result.contains(li)){
+				result.add(li);
+			  }	
+			}
+
+			// add num[i] as single list e.g {1}, {2},{3}
+			List<Integer> list = new ArrayList<Integer>();
+			list.add(num[i]);
+			
+			 //check for duplicate lists
+			if(!result.contains(list)){
+			  result.add(list);
+			}	
+		}
+
+		// add an empty set to result
+		result.add(new ArrayList<Integer>());
+
+		return result;
+     
+ }
 }
