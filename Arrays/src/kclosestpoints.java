@@ -18,6 +18,7 @@ public class kclosestpoints {
 	
     /**
      * Complexity O(n log n)  - worst case k is large and we add/insert every element to priority queue N * logn
+     * This happens if the points are reverse sorted by distance from origin
      * @param p
      * @param k
      * @return
@@ -29,14 +30,15 @@ public class kclosestpoints {
 		if(k == 0 || p == null || p.length == 0){
 			return result;
 		}
-		
-		PriorityQueue<Point> pq = new PriorityQueue<Point>(k, new Comparator<Point>() {
-					@Override
-					public int compare(Point a, Point b) {
-						return (b.x * b.x + b.y * b.y)
-								- (a.x * a.x + a.y * a.y);
-					}
-				});
+		Comparator<Point> c = new Comparator<Point>() {
+			@Override
+			public int compare(Point a, Point b) {
+				return (b.x * b.x + b.y * b.y)
+						- (a.x * a.x + a.y * a.y);
+			}
+		};
+
+		PriorityQueue<Point> pq = new PriorityQueue<Point>(k, c);
 
 		for (int i = 0; i < p.length; i++) {
 			
@@ -45,15 +47,15 @@ public class kclosestpoints {
 				pq.offer(p[i]);
 			else {
 				//once we exceed k, compare with the head of queue
-				Point temp = pq.peek();
+				Point head = pq.peek();
 				//check if the current point is farther than the element at the head of queue
-				if ((p[i].x * p[i].x + p[i].y * p[i].y)
-						- (temp.x * temp.x + temp.y * temp.y) < 0) {
+				if (c.compare(p[i], head) > 0) {
 					//if yes, remove the element from priority queue
 					pq.poll();
 					//add the current point to the queue
 					pq.offer(p[i]);
 				}
+				
 			}
 		}
 
