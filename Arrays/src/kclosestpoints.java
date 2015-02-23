@@ -23,7 +23,14 @@ public class kclosestpoints {
      * @return
      */
 	public List<Point> findKClosest(Point[] p, int k) {
-		PriorityQueue<Point> pq = new PriorityQueue<Point>(10, new Comparator<Point>() {
+		
+		List<Point> result = new ArrayList<Point>();
+		
+		if(k == 0 || p == null || p.length == 0){
+			return result;
+		}
+		
+		PriorityQueue<Point> pq = new PriorityQueue<Point>(k, new Comparator<Point>() {
 					@Override
 					public int compare(Point a, Point b) {
 						return (b.x * b.x + b.y * b.y)
@@ -50,7 +57,7 @@ public class kclosestpoints {
 			}
 		}
 
-		List<Point> result = new ArrayList<Point>();
+		
 		//loop through priority queue and add to result
 		while (!pq.isEmpty())
 			result.add(pq.poll());
