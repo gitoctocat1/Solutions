@@ -5,6 +5,13 @@ public class strstr {
 		strStr("abcd", "bc");
 		
 	}
+	
+	/**
+	 * Complexity O (m * n)
+	 * @param haystack
+	 * @param needle
+	 * @return
+	 */
 	public static int strStr(String haystack, String needle) {
 	      
 	       for (int i = 0; ; i++) {
