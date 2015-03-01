@@ -10,21 +10,21 @@ public class IntegerToRoman {
 	 */
 	public String intToRoman(int num) {
 
-		String[] s = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX",
+		String[] romanNumber = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX",
 				"V", "IV", "I" };
-		int[] u = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+		int[] value = { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
 		
-		String t = "";
+		String result = "";
 		
 		
 		for (int i = 0; i < 13; i++) {
-			while (num >= u[i]) {
-				t += s[i];
-				num -= u[i];
+			while (num >= value[i]) {
+				result += romanNumber[i];
+				num -= value[i];
 			}
 		}
 		
-		return t;
+		return result;
 	}
 	
 	/**

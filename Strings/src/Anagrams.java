@@ -7,7 +7,8 @@ import java.util.List;
 public class Anagrams {
 	
 
-    //Complexity O(n) ; copy into another array and sort the values;loop through sorted array and sorted values serve as keys to     the hashmap
+	// Sort N strings each of maximum length M = N (M logM )
+    //copy into another array and sort the values;loop through sorted array and sorted values serve as keys to     the hashmap
     public List<String> anagrams(String[] strs) {
         
        List<String> anagrams = new ArrayList<String>();
