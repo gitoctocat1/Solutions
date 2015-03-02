@@ -18,6 +18,8 @@ public class CloneGraph {
 
 	/**
 	 * Complexity O(n)
+	 * 
+	 * Check for cycle
 	 * As we copy a node, we insert it into the table. If we later find that one of a node’s neighbor is already in the table, we do not make a copy of that neighbor,
 	 *  but to push its neighbor’s copy to its copy instead.
 	 *  Therefore, the hash table would need to store a mapping of key-value pairs, where the key is a node in the original graph and its value is the node’s copy.
@@ -44,16 +46,19 @@ public class CloneGraph {
 		// BFS
 		while (!queue.isEmpty()) {
 			root = queue.remove(0);
-			UndirectedGraphNode node = visited.get(root);
+			UndirectedGraphNode rc = visited.get(root);
 			
-			for (UndirectedGraphNode nb : root.neighbors) {
-				if (visited.containsKey(nb)) {
-					node.neighbors.add(visited.get(nb));
+			for (UndirectedGraphNode neighbor : root.neighbors) {
+				//check if the neighbor has been visited 
+				if (visited.containsKey(neighbor)) {
+					rc.neighbors.add(visited.get(neighbor));
 				} else {
-					UndirectedGraphNode n = new UndirectedGraphNode(nb.label);
-					node.neighbors.add(n);
-					visited.put(nb, n);
-					queue.add(nb);
+					
+					//if neighbor has not been visited, make a copy and add to map. Add the neighbor itself to the queue
+					UndirectedGraphNode neighborCopy = new UndirectedGraphNode(neighbor.label);
+					rc.neighbors.add(neighborCopy);
+					visited.put(neighbor, neighborCopy);
+					queue.add(neighbor);
 				}
 			}
 		}
