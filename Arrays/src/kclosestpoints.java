@@ -66,6 +66,50 @@ public class kclosestpoints {
 
 		return result;
 	}
+	
+	
+	public List<Point> kClosestToGivenPoint(Point[] points, final Point p, int k) {
+
+		List<Point> result = new ArrayList<Point>();
+
+		if (k == 0 || p == null || points == null || points.length == 0) {
+			return result;
+		}
+		Comparator<Point> c = new Comparator<Point>() {
+			@Override
+			public int compare(Point a, Point b) {
+				int d1 = (a.x - p.x) * (a.x - p.x) + (a.y - p.y) * (a.y - p.y);
+				int d2 = (b.x - p.x) * (b.x - p.x) + (b.y - p.y) * (b.y - p.y);
+				return d2 - d1;
+			}
+		};
+
+		PriorityQueue<Point> pq = new PriorityQueue<Point>(k, c);
+
+		for (int i = 0; i < points.length; i++) {
+
+			if (i < k) {
+				pq.add(points[i]);
+			} else {
+
+				Point head = pq.peek();
+				// check if the current point is farther than the element at the
+				// head of queue
+				if (c.compare(points[i], head) > 0) {
+					// if yes, remove the element from priority queue
+					pq.poll();
+					// add the current point to the queue
+					pq.offer(points[i]);
+
+				}
+			}
+		}
+		// loop through priority queue and add to result
+		while (!pq.isEmpty())
+			result.add(pq.poll());
+
+		return result;
+	}
 
 	public static void main(String[] args) {
 		kclosestpoints p = new kclosestpoints();
@@ -73,13 +117,18 @@ public class kclosestpoints {
 		Point p1 = new Point(5, 6);
 		Point p2 = new Point(1, 2);
 		Point p3 = new Point(3, 4);
-		Point p4 = new Point(1, 1);
-		Point[] points = new Point[4];
+		//Point p4 = new Point(1, 1);
+		Point[] points = new Point[3];
 		points[0] = p1;
 		points[1] = p2;
 		points[2] = p3;
-		points[3] = p4;
-		List<Point> result = p.findKClosest(points, 3);
+		//points[3] = p4;
+		
+		
+	//	List<Point> result = p.findKClosest(points, 3);
+		
+		Point pp = new Point(1,1);
+		List<Point> result = p.kClosestToGivenPoint(points,pp, 2);
 
 		for (int i = 0; i < result.size(); i++) {
 			System.out.println("(" + result.get(i).x + "," + result.get(i).y
