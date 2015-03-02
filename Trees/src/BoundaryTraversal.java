@@ -2,44 +2,53 @@ public class BoundaryTraversal {
 
 	/**
 	 * Complexity O(n)
+	 * 
 	 * @param root
 	 */
 	void printBoundary(TreeNode root) {
 
-		if (root != null) {
+		if (root == null) {
+			return;
+		}
 
+		System.out.println(root.value);
+
+		printLeftBoundary(root.left);
+		printLeaves(root.left);
+		printLeaves(root.right);
+		printRightBoundary(root.right);
+
+	}
+
+	private void printLeftBoundary(TreeNode root) {
+		if (root == null) {
+	     return;
+		}	
+		
+		if (root.left != null) {
 			System.out.println(root.value);
-
 			printLeftBoundary(root.left);
-			printLeaves(root.left);
-			printLeaves(root.right);
-			printRightBoundary(root.right);
+			
+		} else if (root.right != null) {
+			System.out.println(root.value);
+			printLeftBoundary(root.right);
 		}
+		
 	}
 
-	private void printLeftBoundary(TreeNode left) {
-		if (left != null) {
-			if (left.left != null) {
-				System.out.println(left.value);
-				printLeftBoundary(left.left);
-			} else if (left.right != null) {
-				System.out.println(left.value);
-				printLeftBoundary(left.right);
-			}
-		}
-	}
-
-	private void printRightBoundary(TreeNode right) {
-		if (right != null) {
-			if (right.right != null) {
-				printRightBoundary(right.right);
-				System.out.println(right.value);
-			} else if (right.left != null) {
-				printRightBoundary(right.left);
-				System.out.println(right.value);
+	private void printRightBoundary(TreeNode root) {
+		if (root == null) {
+		  return;	
+		}		
+			if (root.right != null) {
+				printRightBoundary(root.right);
+				System.out.println(root.value);
+			} else if (root.left != null) {
+				printRightBoundary(root.left);
+				System.out.println(root.value);
 			}
 
-		}
+		
 	}
 
 	private void printLeaves(TreeNode node) {
