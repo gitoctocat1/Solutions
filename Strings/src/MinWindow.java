@@ -10,7 +10,7 @@ public class MinWindow {
 		String T1="ABC";
 		
 		MinWindow mws = new MinWindow();
-		System.out.println(mws.minWindow(S1, T1));
+		System.out.println(mws.minWindow(S, T));
 	}
 	
 	   /**
