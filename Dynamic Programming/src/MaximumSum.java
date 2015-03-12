@@ -1,7 +1,29 @@
 public class MaximumSum {
 
 	/**
-	 * Complexity O(n)
+	 * Complexity O(n) and space O(1)
+	 * @param A
+	 * @return
+	 */
+	public int maxSumSubArray(int[] A) {
+
+		int currentSum = A[0];
+
+		int maxSum = A[0];
+
+		for (int i = 1; i < A.length; i++) {
+
+			// compare n with sum of n-1 elements
+
+			currentSum = Math.max(A[i], currentSum + A[i]);
+
+			maxSum = Math.max(maxSum, currentSum);
+		}
+		return maxSum;
+	}
+
+	/**
+	 * Complexity O(n) and space O(n)
 	 * 
 	 * @param A
 	 * @return
