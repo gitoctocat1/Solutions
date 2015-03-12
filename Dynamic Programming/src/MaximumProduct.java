@@ -1,5 +1,37 @@
 
 public class MaximumProduct {
+	
+	public static void main(String[] args) {
+		
+		int[] a = {2,3};
+		
+		MaximumProduct mp = new MaximumProduct();
+		System.out.println(mp.maxProduct1(a));
+	}
+	
+	
+	 public int maxProduct1(int[] A) {
+	       
+	        int prevMinProduct = A[0];
+	        int prevMaxProduct = A[0];
+	        
+	        int product = A[0];
+	        
+	        for (int i = 1; i < A.length ; i++){
+	            
+	            int  minProduct =  Math.min ( Math.min (A[i] * prevMinProduct ,  A[i] * prevMaxProduct) ,A[i]) ;
+	            
+	            int  maxProduct =  Math.max ( Math.max (A[i] * prevMaxProduct ,  A[i] * prevMinProduct) , A[i] );
+	            
+	            product = Math.max(maxProduct, product);
+	            
+	            prevMinProduct = minProduct; prevMaxProduct = maxProduct;
+	            
+	        }
+	      
+	        return product;
+	        
+	    }
 
 	/**
 	 * Time Complexity O(n) space O(n)
