@@ -1,16 +1,4 @@
 
- //Definition for singly-linked list.
-   class DoublyLinkedListNode {
-      int val;
-      DoublyLinkedListNode next;
-      DoublyLinkedListNode prev ;
-      DoublyLinkedListNode(int x) {
-          val = x;
-          next = null;
-          prev = null;
-      }
-  }
- 
 
 public class ReverseDoublyLinkedList {
 
@@ -26,7 +14,9 @@ public class ReverseDoublyLinkedList {
 	     {
 	       temp = current.prev;
 	       current.prev = current.next;
-	       current.next = temp;              
+	       current.next = temp;  
+	       
+	       //adjust the pointer to move to next element because we swapped
 	       current = current.prev;
 	     }      
 	      
