@@ -21,9 +21,10 @@ public class ValidNumber {
 		boolean canPointAppear = true;
 		
 		for (int i = 0; i < s.length(); i++) {
+			
 			char c = s.charAt(i);
 			//symbols can appear only once at the start
-			if ((c == '+' || c == '-') && canSymbolAppear) {
+			if (isSymbol(c) && canSymbolAppear) {
 				canSymbolAppear = false;
 				continue;
 			}
@@ -78,5 +79,9 @@ public class ValidNumber {
 
 	public boolean isE(char s) {
 		return (s == 'e' || s == 'E');
+	}
+	
+	public boolean isSymbol(char s){
+		return (s =='+' || s== '-');
 	}
 }
