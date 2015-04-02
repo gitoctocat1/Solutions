@@ -1,5 +1,9 @@
 
 public class ReverseString {
+	
+	public static void main(String[] args) {
+		
+	}
 
 	/**
 	 * Complexity O (n)
