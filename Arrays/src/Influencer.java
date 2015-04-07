@@ -10,7 +10,7 @@ public class Influencer {
 		int candidate = 0;
 
 		for (int i = 1; i < M.length; i++) {
-			
+			//check if i is a potential candidate
 			//candidate is following i OR i is
 			if (M[candidate][i] == 1 || M[i][candidate] == 0) {
 				candidate = i;
