@@ -32,32 +32,32 @@ public class ThreeSum {
 		 
 					int negate = -num[i];
 		 
-					int start = i + 1;
-					int end = num.length - 1;
+					int j = i + 1;
+					int k = num.length - 1;
 		 
-					while (start < end) {
+					while (j < k) {
 						//case 1
-						if (num[start] + num[end] == negate) {
+						if (num[j] + num[k] == negate) {
 							ArrayList<Integer> temp = new ArrayList<Integer>();
 							temp.add(num[i]);
-							temp.add(num[start]);
-							temp.add(num[end]);
+							temp.add(num[j]);
+							temp.add(num[k]);
 		 
 							result.add(temp);
-							start++;
-							end--;
+							j++;
+							k--;
 							//avoid duplicate solutions
-							while (start < end && num[end] == num[end + 1])
-								end--;
+							while (j < k && num[k] == num[k + 1])
+								k--;
 		 
-							while (start < end && num[start] == num[start - 1])
-								start++;
+							while (j < k && num[j] == num[j - 1])
+								j++;
 						//case 2
-						} else if (num[start] + num[end] < negate) {
-							start++;
+						} else if (num[j] + num[k] < negate) {
+							j++;
 						//case 3
 						} else {
-							end--;
+							k--;
 						}
 					}
 		 
