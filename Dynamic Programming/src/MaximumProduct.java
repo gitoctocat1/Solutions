@@ -9,7 +9,11 @@ public class MaximumProduct {
 		System.out.println(mp.maxProduct1(a));
 	}
 	
-	
+	/**
+	 * Complexity O(n) and space O(1)
+	 * @param A
+	 * @return
+	 */
 	 public int maxProduct1(int[] A) {
 	       
 	        int prevMinProduct = A[0];
