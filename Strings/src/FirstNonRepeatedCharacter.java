@@ -61,10 +61,12 @@ public class FirstNonRepeatedCharacter {
 	}
 	
 	
-	/* * Using HashMap to find first non-repeated character from String in Java. * Algorithm : 
+	/* * Using HashMap to find first non-repeated character from String in Java. 
+	 * * Algorithm : 
 	 * * Step 1 : Scan String and store count of each character in HashMap 
 	 * * Step 2 : traverse String and get count for each character from Map. 
-	 * * Since we are going through String from first to last character, * when count for any character is 1, we break, it's the first * non repeated character. 
+	 * * Since we are going through String from first to last character, * when count for any character is 1, we break, it's the first 
+	 * * non repeated character. 
 	 * Here order is achieved by going * through String again. */ 
 	
 	public static char firstNonRepeatedCharacter(String word) { 
